@@ -17,6 +17,7 @@ class Book(models.Model):
     description = models.TextField(max_length=1000, help_text='Enter the summary')
     date_added = models.DateField(null=True, blank=True, default=date.today)
     category = models.ManyToManyField(Category, help_text='Select a genre for this book')
+    url = models.URLField(max_length=200, default='https://www.google.com/')
 
     def __str__(self):
         return self.title
