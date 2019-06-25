@@ -3,11 +3,13 @@
 {% block content %}
   <h1>Freeshelf</h1>
   <h2><strong>Recently added books</strong></h2>
-  {% if index %}
+  {% if book_list %}
   <ul>
-    {% for book in index %}
+    {% for book in book_list %}
       <li>
-        <a href="{{ book.url }}">{{ book.title }}</a> <p>by {{ book.author }}</p>
+        <p><a href="{{ book.url }}">{{ book.title }}</a> by {{ book.author }}</p>
+        <p>{{ book.description }}</p>
+        <p>added {{ book.date_added }}</p>
       </li>
     {% endfor %}
   </ul>
