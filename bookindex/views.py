@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from bookindex.models import Book, Category
-
+from django.contrib.auth.decorators import login_required
 
 def indexview(request):
 

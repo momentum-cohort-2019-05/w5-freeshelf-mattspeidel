@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block title %}<title>Freeshelf</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>Freeshelf</h1>
+    <div>
+        {% if request.user.is_authenticated %}
+        Logged in as {{ request.user }} | <a href="{% url 'auth_logout' %}">Logout</a>
+        {% else %}
+        <a href="{% url 'auth_login' %}">Login</a> |
+        <a href="{% url 'registration_register' %}">Register</a>
+        {% endif %}
+    </div>
+    {% block content %}{% endblock %}
+</body>
+</html>
