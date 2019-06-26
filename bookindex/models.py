@@ -8,7 +8,10 @@ class Category(models.Model):
     description = models.TextField(max_length=1000)
     
     def __str__(self):
-        return self.name
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('category-list', args=[str(self.id)])
 
 class Book(models.Model):
 
@@ -16,7 +19,7 @@ class Book(models.Model):
     author = models.CharField(max_length=100)
     description = models.TextField(max_length=1000, help_text='Enter the summary')
     date_added = models.DateField(null=True, blank=True, default=date.today)
-    category = models.ManyToManyField(Category, help_text='Select a genre for this book')
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     url = models.URLField(max_length=200, default='https://www.google.com/')
 
     def __str__(self):
