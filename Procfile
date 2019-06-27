@@ -1,1 +1,1 @@
-web: gunicorn bookindex.wsgi
+web: gunicorn freeshelf.wsgi
