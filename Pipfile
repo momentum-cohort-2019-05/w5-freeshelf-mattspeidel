@@ -9,6 +9,9 @@ pylint = "*"
 [packages]
 django = "*"
 django-registration-redux = "*"
+django-heroku = "*"
+psycopg2 = "*"
+postgresql = "*"
 
 [requires]
 python_version = "3.7"
