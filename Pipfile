@@ -11,7 +11,7 @@ django = "*"
 django-registration-redux = "*"
 django-heroku = "*"
 psycopg2 = "*"
-postgresql = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
