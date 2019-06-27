@@ -12,9 +12,6 @@ def load_initial_questions(apps, schema_editor):
     Category.objects.all().delete()
     Book.objects.all().delete()
 
-    category = Category(name="Programming books")
-    category.save()
-
     filename = os.path.join(settings.BASE_DIR, 'sample_books.csv')
 
     with open(filename) as file:
