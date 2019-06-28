@@ -1,5 +1,5 @@
 from django.contrib import admin
-from bookindex.models import Category, Book
+from bookindex.models import Category, Book, Favorite
 
 # Register your models here.
 # Register the Admin classes for Book using the decorator
@@ -11,4 +11,6 @@ class BookAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title', 'description')
 
-    
+@admin.register(Favorite)   
+class FavoriteAdmin(admin.ModelAdmin):
+    list_display = ('user', 'book') 

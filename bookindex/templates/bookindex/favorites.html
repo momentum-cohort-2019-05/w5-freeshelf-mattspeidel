@@ -3,9 +3,12 @@
 {% block content %}
 {% if display_books %}
     {% for book in display_books %}
-        <p><a href="{{ book.get_absolute_url }}">{{ book.title }}</a> by {{ book.author }}</p>
+        <p><a href="{{ book.url }}">{{ book.title }}</a> by {{ book.author }}</p>
         <p>{{ book.description }}</p>
         <p>added {{ book.date_added }}</p>
+    {% endfor %}
+    <p>{{ display_books }}</p>
 {% else %}
     <p>You have not favorited any books.</p>
+{% endif %}
 {% endblock %}

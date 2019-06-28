@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from bookindex.models import Book, Category, Favorite
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 def indexview(request):
 
@@ -27,9 +28,6 @@ def favoriteview(request, favorite_pk):
     display_books = []
 
     for favorite in favorites:
-        display_books.append(Favorite.book)
+        display_books.append(favorite.book)
 
     return render(request, 'bookindex/favorites.html', {"user_name": user_name, "display_books": display_books})
-
-
-
