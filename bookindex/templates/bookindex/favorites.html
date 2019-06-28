@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if display_books %}
+    {% for book in display_books %}
+        <p><a href="{{ book.get_absolute_url }}">{{ book.title }}</a> by {{ book.author }}</p>
+        <p>{{ book.description }}</p>
+        <p>added {{ book.date_added }}</p>
+{% else %}
+    <p>You have not favorited any books.</p>
+{% endblock %}

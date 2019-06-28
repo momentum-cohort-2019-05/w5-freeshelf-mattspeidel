@@ -34,3 +34,8 @@ class Favorite(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     date_favorited = models.DateField(null=True, blank=True, default=date.today)
 
+    def __str__(self):
+        return f"{self.user}|{self.book}"
+
+    class Meta:
+        unique_together = [ 'user', 'book' ]

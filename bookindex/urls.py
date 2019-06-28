@@ -10,5 +10,5 @@ urlpatterns = [
     path('category/<int:category_pk>', views.categoryview, name='category-list'),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
-
+    path('favorites/<int:favorite_pk>', views.favoriteview, name='favorites'),
 ]
