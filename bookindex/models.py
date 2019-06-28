@@ -27,3 +27,10 @@ class Book(models.Model):
     
     def get_absolute_url(self):
         return reverse('book-detail', args=[str(self.id)])
+
+class Favorite(models.Model):
+
+    book = models.ForeignKey(to=Book, on_delete=models.CASCADE, related_name='favorites')
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    date_favorited = models.DateField(null=True, blank=True, default=date.today)
+
