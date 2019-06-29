@@ -21,6 +21,7 @@ class Book(models.Model):
     date_added = models.DateField(null=True, blank=True, default=date.today)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     url = models.URLField(max_length=200, default='https://www.google.com/')
+    favorited_by = models.ManyToManyField(to=User, related_name='favorite_books', through='Favorite')
 
     def __str__(self):
         return self.title

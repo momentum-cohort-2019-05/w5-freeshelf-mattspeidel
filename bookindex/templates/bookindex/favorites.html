@@ -6,8 +6,20 @@
         <p><a href="{{ book.url }}">{{ book.title }}</a> by {{ book.author }}</p>
         <p>{{ book.description }}</p>
         <p>added {{ book.date_added }}</p>
+        {% if request.user.is_authenticated %}
+            <form method='POST' action="{% url 'favorites' user.pk %}">
+            {% csrf_token %}
+            <input type='hidden' name='video' value={{ book.pk }}>
+            <button type='submit'>
+                {% if book in request.user.favorite_books.all %}
+                    Unfavorite
+                {% else %}
+                    Favorite
+                {% endif %}
+            </button>
+            </form>
+      {% endif %}
     {% endfor %}
-    <p>{{ display_books }}</p>
 {% else %}
     <p>You have not favorited any books.</p>
 {% endif %}
