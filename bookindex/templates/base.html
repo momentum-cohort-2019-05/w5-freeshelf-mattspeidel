@@ -2,19 +2,39 @@
 <html lang="en">
 <head>
   {% block title %}<title>Freeshelf</title>{% endblock %}
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-    <h1>Freeshelf</h1>
-    <div>
-        {% if request.user.is_authenticated %}
-        Logged in as {{ request.user }} | <a href="{% url 'auth_logout' %}">Logout</a>
-        {% else %}
-        <a href="{% url 'auth_login' %}">Login</a> |
-        <a href="{% url 'registration_register' %}">Register</a>
-        {% endif %}
-    </div>
-    {% block content %}{% endblock %}
+<body class="sans-serif">
+  <nav class="pa3 pa4-ns">
+      <a class="link dim black b f6 f5-ns dib mr3" href="{% url 'index' %}" title="Freeshelf">Freeshelf</a>
+      <a class="link dim gray    f6 f5-ns dib mr3" href="{% url 'index' %}" title="Home">Home</a>
+      <a class="link dim gray    f6 f5-ns dib mr3" href="{% url 'favorites' user.pk %}" title="My Favorites">My Favorites</a>
+  </nav>
+  <section class="ph3 ph5-ns pv5">
+      <article class="mw8 center br2 ba b--light-blue bg-lightest-blue">
+        <div class="dt-ns dt--fixed-ns w-100">
+          <div class="pa3 pa4-ns dtc-ns v-mid">
+            <div>
+              <h1 class="fw4 blue mt0 mb3">Freeshelf</h1>
+              <p class="black-70 measure lh-copy mv0">
+                  A site for checking out books.
+              </p>
+            </div>
+          </div>
+          <div class="pa3 pa4-ns dtc-ns v-mid">
+              {% if request.user.is_authenticated %}
+              Logged in as {{ request.user }} <a href="{% url 'auth_logout' %}" class="no-underline f6 tc db w-100 pv3 bg-animate bg-blue hover-bg-dark-blue white br2">Logout</a>
+              {% else %}
+              <a href="{% url 'auth_login' %}" class="no-underline f6 tc db w-100 pv3 bg-animate bg-blue hover-bg-dark-blue white br2">Login</a> |
+              <a href="{% url 'registration_register' %}" class="no-underline f6 tc db w-100 pv3 bg-animate bg-blue hover-bg-dark-blue white br2">Register</a>
+              {% endif %}
+          </div>
+        </div>
+      </article>
+  </section>
+    
+  {% block content %}{% endblock %}
 </body>
 </html>

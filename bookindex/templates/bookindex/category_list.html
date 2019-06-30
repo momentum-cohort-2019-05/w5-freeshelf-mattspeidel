@@ -2,14 +2,29 @@
 
 {% block content %}
 
-<h3>Book in category: {{ category.title }}</h3>
+<h3 class="pa3 pa5-ns">Books in category: {{ category.title }}</h3>
 <ul>
     {% for book in category.book_set.all %}
-        <li>
-            <p><a href="{{ book.url }}">{{ book.title }}</a> by {{ book.author }}</p>
-            <p>{{ book.description }}</p>
-            <p>added {{ book.date_added }}</p>
-        </li>
+        <div class="pa3 pa5-ns">
+            <div class="f4 lh-copy measure">
+                <p><a href="{{ book.url }}">{{ book.title }}</a> by {{ book.author }}</p>
+                <p>{{ book.description }}</p>
+                <p>added {{ book.date_added }}</p>
+                {% if request.user.is_authenticated %}
+                    <form method='POST' action="{% url 'favorites' user.pk %}">
+                    {% csrf_token %}
+                    <input type='hidden' name='video' value={{ book.pk }}>
+                    <button type='submit'>
+                    {% if book in request.user.favorite_books.all %}
+                        Unfavorite
+                    {% else %}
+                        Favorite
+                    {% endif %}
+            </button>
+          </form>
+        {% endif %}
+            </div>
+        </div>
     {% endfor %}
 </ul>
 {% endblock %}
